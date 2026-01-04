@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transport\TransportDetail;
 use App\Http\Resources\Transport\TransportResource;
 use App\Http\Resources\Transport\TransportCollection;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransportController extends Controller
 {
@@ -53,7 +53,7 @@ class TransportController extends Controller
 
         $transport = Transport::findOrFail($id);
 
-        $pdf = PDF::loadView("transport.pdf_transport",compact('transport'));
+        $pdf = Pdf::loadView("transport.pdf_transport",compact('transport'));
 
         return $pdf->stream("transport-".$transport->id.".pdf");
     }
